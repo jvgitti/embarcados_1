@@ -1,0 +1,70 @@
+\hypertarget{group__main__module}{
+\section{main module documentation}
+\label{group__main__module}\index{main module documentation@{main module documentation}}
+}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__main__module_gab45c036afe4d6087324e2b3ef9c44013}{
+void \hyperlink{group__main__module_gab45c036afe4d6087324e2b3ef9c44013}{\-Send\-Cmd} (uint8\-\_\-t $\ast$s)}
+\label{group__main__module_gab45c036afe4d6087324e2b3ef9c44013}
+
+\begin{DoxyCompactList}\small\item\em \-Enviar comando para o \-E\-S\-P e recebe o caracter da string como argumento. \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga53b9b40a2ee5feb9f1cbb6f8cf78efd1}{
+void \hyperlink{group__main__module_ga53b9b40a2ee5feb9f1cbb6f8cf78efd1}{\-Send\-P\-C} (uint8\-\_\-t $\ast$s)}
+\label{group__main__module_ga53b9b40a2ee5feb9f1cbb6f8cf78efd1}
+
+\begin{DoxyCompactList}\small\item\em \-Enviar string para o \-P\-C e recebe o caracter da string como argumento -\/ \-Mesma ideia da funcao \-Send\-Cmd. \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga840291bc02cba5474a4cb46a9b9566fe}{
+int \hyperlink{group__main__module_ga840291bc02cba5474a4cb46a9b9566fe}{main} (void)}
+\label{group__main__module_ga840291bc02cba5474a4cb46a9b9566fe}
+
+\begin{DoxyCompactList}\small\item\em \-A main trata a string de comando inserida pelo usuario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__main__module_gaf985d9ce1627ab56414c418151c4dce2}{
+volatile uint8\-\_\-t \hyperlink{group__main__module_gaf985d9ce1627ab56414c418151c4dce2}{cmd} \mbox{[}100\mbox{]} = \{0\}}
+\label{group__main__module_gaf985d9ce1627ab56414c418151c4dce2}
+
+\begin{DoxyCompactList}\small\item\em buffer de comando a ser escrito \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga7a936bd06dddfff3ee575a2fec89a3f4}{
+volatile uint8\-\_\-t \hyperlink{group__main__module_ga7a936bd06dddfff3ee575a2fec89a3f4}{rcv} \mbox{[}100\mbox{]} = \{0\}}
+\label{group__main__module_ga7a936bd06dddfff3ee575a2fec89a3f4}
+
+\begin{DoxyCompactList}\small\item\em buffer da mensagem recebida \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_gacf6481fda84b66f0f48b99c40933cd3f}{
+volatile uint8\-\_\-t \hyperlink{group__main__module_gacf6481fda84b66f0f48b99c40933cd3f}{posit} = 0}
+\label{group__main__module_gacf6481fda84b66f0f48b99c40933cd3f}
+
+\begin{DoxyCompactList}\small\item\em posicao no buffer rcv \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga2bc0bfc207698aaa7bef9f239361c082}{
+volatile char \hyperlink{group__main__module_ga2bc0bfc207698aaa7bef9f239361c082}{message} = 0}
+\label{group__main__module_ga2bc0bfc207698aaa7bef9f239361c082}
+
+\begin{DoxyCompactList}\small\item\em flag para sinalizar que a mensagem foi recebida \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_gaacd6d05062e9706d6d043a402e87dbaa}{
+uint8\-\_\-t \hyperlink{group__main__module_gaacd6d05062e9706d6d043a402e87dbaa}{top} \mbox{[}50\mbox{]} = \{0\}}
+\label{group__main__module_gaacd6d05062e9706d6d043a402e87dbaa}
+
+\begin{DoxyCompactList}\small\item\em string do topico \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_gaf8ed8616e4f4b0eb16b3c180c9f0240c}{
+uint8\-\_\-t \hyperlink{group__main__module_gaf8ed8616e4f4b0eb16b3c180c9f0240c}{par} \mbox{[}10\mbox{]} = \{0\}}
+\label{group__main__module_gaf8ed8616e4f4b0eb16b3c180c9f0240c}
+
+\begin{DoxyCompactList}\small\item\em string do parametro do topico \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga8b48b2f491b838fb124da7f6f709aefb}{
+uint8\-\_\-t \hyperlink{group__main__module_ga8b48b2f491b838fb124da7f6f709aefb}{scan} = 0}
+\label{group__main__module_ga8b48b2f491b838fb124da7f6f709aefb}
+
+\begin{DoxyCompactList}\small\item\em scanner 1 de string \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga24f30879ceb631e80e0083f800a961e6}{
+uint8\-\_\-t \hyperlink{group__main__module_ga24f30879ceb631e80e0083f800a961e6}{scan\-\_\-2} = 0}
+\label{group__main__module_ga24f30879ceb631e80e0083f800a961e6}
+
+\begin{DoxyCompactList}\small\item\em scanner 2 de string \end{DoxyCompactList}\item 
+\hypertarget{group__main__module_ga2002b1d0764f2bdd21866d9e186d5590}{
+uint8\-\_\-t \hyperlink{group__main__module_ga2002b1d0764f2bdd21866d9e186d5590}{count\-\_\-sub} = 3}
+\label{group__main__module_ga2002b1d0764f2bdd21866d9e186d5590}
+
+\begin{DoxyCompactList}\small\item\em \-Variavel para indicar se houve inscricao nos 3 topicos dos \-L\-E\-Ds. \end{DoxyCompactList}\end{DoxyCompactItemize}

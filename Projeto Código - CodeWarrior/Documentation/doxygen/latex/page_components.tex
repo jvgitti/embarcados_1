@@ -1,0 +1,2033 @@
+
+\begin{DoxyItemize}
+\item \hyperlink{_a_serial_ldd1}{\-A\-Serial\-Ldd1 (\-Serial\-\_\-\-L\-D\-D)}
+\item \hyperlink{_a_serial_ldd2}{\-A\-Serial\-Ldd2 (\-Serial\-\_\-\-L\-D\-D)}
+\item \hyperlink{_bit_io_ldd1}{\-Bit\-Io\-Ldd1 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}
+\item \hyperlink{_bit_io_ldd2}{\-Bit\-Io\-Ldd2 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}
+\item \hyperlink{_bit_io_ldd3}{\-Bit\-Io\-Ldd3 (\-Bit\-I\-O\-\_\-\-L\-D\-D)} 
+\end{DoxyItemize}\hypertarget{ASerialLdd1}{}\section{\-A\-Serial\-Ldd1 (\-Serial\-\_\-\-L\-D\-D)}\label{ASerialLdd1}
+\-This component \char`\"{}\-Serial\-\_\-\-L\-D\-D\char`\"{} implements an asynchronous serial communication. \-The component supports different settings of parity, word width, stop-\/bit and communication speed, user can select interrupt or polling handler. \-Communication speed can be changed also in runtime. \-The component requires one on-\/chip asynchronous serial communication channel.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_a_serial_ldd1_settings}{\-Component \-Settings}
+\item \hyperlink{_a_serial_ldd1_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_a_serial_ldd1_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___a_serial_ldd1__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{ASerialLdd1_settings}{}\subsection{\-Component \-Settings}\label{ASerialLdd1_settings}
+
+\begin{DoxyCode}
+          Component name                                 : ASerialLdd1
+          Device                                         : UART0
+          Interrupt service/event                        : Enabled
+            Interrupt RxD                                : INT_UART0
+            Interrupt RxD priority                       : medium priority
+            Interrupt TxD                                : INT_UART0
+            Interrupt TxD priority                       : medium priority
+            Interrupt Error                              : INT_UART0
+            Interrupt Error priority                     : medium priority
+          Settings                                       : 
+            Data width                                   : 8 bits
+            Parity                                       : None
+            Stop bits                                    : 1
+            Loop mode                                    : Normal
+            Baud rate                                    : 19200 baud
+            Wakeup condition                             : Idle line wakeup
+            Stop in wait mode                            : no
+            Idle line mode                               : Starts after start 
+      bit
+            Transmitter output                           : Not inverted
+            Receiver input                               : Not inverted
+            Break generation length                      : 10/11 bits
+            Receiver                                     : Enabled
+              RxD                                        : TSI0_CH2/PTA1/
+      UART0_RX/TPM2_CH0
+              RxD pin signal                             : 
+            Transmitter                                  : Enabled
+              TxD                                        : TSI0_CH3/PTA2/
+      UART0_TX/TPM2_CH1
+              TxD pin signal                             : 
+            Flow control                                 : None
+          Initialization                                 : 
+            Enabled in init. code                        : yes
+            Auto initialization                          : no
+            Event mask                                   : 
+              OnBlockSent                                : Enabled
+              OnBlockReceived                            : Enabled
+              OnTxComplete                               : Disabled
+              OnError                                    : Enabled
+              OnBreak                                    : Enabled
+          CPU clock/configuration selection              : 
+            Clock configuration 0                        : This component 
+      enabled
+            Clock configuration 1                        : This component 
+      disabled
+            Clock configuration 2                        : This component 
+      disabled
+            Clock configuration 3                        : This component 
+      disabled
+            Clock configuration 4                        : This component 
+      disabled
+            Clock configuration 5                        : This component 
+      disabled
+            Clock configuration 6                        : This component 
+      disabled
+            Clock configuration 7                        : This component 
+      disabled
+\end{DoxyCode}
+ \hypertarget{ASerialLdd1_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{ASerialLdd1_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-A\-Serial\-Ldd1 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x40048034&\-S\-I\-M\-\_\-\-S\-C\-G\-C4&0x00000400 &\-S\-I\-M\-\_\-\-S\-C\-G\-C4 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x40049004&\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1&0x00000200 &\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x40049008&\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2&0x00000200 &\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x\-E000\-E40\-C&\-N\-V\-I\-C\-\_\-\-I\-P\-R3&0x00000080 &\-N\-V\-I\-C\-\_\-\-I\-P\-R3 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x\-E000\-E100&\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R&0x00001000 &\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A002&\-U\-A\-R\-T0\-\_\-\-C1&0x00000000 &\-U\-A\-R\-T0\-\_\-\-C1 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A006&\-U\-A\-R\-T0\-\_\-\-C3&0x00000000 &\-U\-A\-R\-T0\-\_\-\-C3 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A00\-A&\-U\-A\-R\-T0\-\_\-\-C4&0x0000000\-F &\-U\-A\-R\-T0\-\_\-\-C4 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A005&\-U\-A\-R\-T0\-\_\-\-S2&0x00000000 &\-U\-A\-R\-T0\-\_\-\-S2 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{ASerialLdd1_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{ASerialLdd1_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-S\-I\-M\-\_\-\-S\-C\-G\-C4  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-P\-I1 }&\multirow{2}{\linewidth}{\-S\-P\-I0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-C\-M\-P}&\multirow{2}{\linewidth}{\-U\-S\-B\-O\-T\-G}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-U\-A\-R\-T2}&\multirow{2}{\linewidth}{\-U\-A\-R\-T1}&\multirow{2}{\linewidth}{\-U\-A\-R\-T0 }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I2\-C1 }&\multirow{2}{\linewidth}{\-I2\-C0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40048034 \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x\-F0000030 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+23&\-S\-P\-I1&0x00&\-S\-P\-I1 \-Clock \-Gate \-Control \\\cline{1-4}
+22&\-S\-P\-I0&0x00&\-S\-P\-I0 \-Clock \-Gate \-Control \\\cline{1-4}
+19&\-C\-M\-P&0x00&\-Comparator \-Clock \-Gate \-Control \\\cline{1-4}
+18&\-U\-S\-B\-O\-T\-G&0x00&\-U\-S\-B \-Clock \-Gate \-Control \\\cline{1-4}
+12&\-U\-A\-R\-T2&0x00&\-U\-A\-R\-T2 \-Clock \-Gate \-Control \\\cline{1-4}
+11&\-U\-A\-R\-T1&0x00&\-U\-A\-R\-T1 \-Clock \-Gate \-Control \\\cline{1-4}
+10&\-U\-A\-R\-T0&0x01&\-U\-A\-R\-T0 \-Clock \-Gate \-Control \\\cline{1-4}
+7&\-I2\-C1&0x00&\-I2\-C1 \-Clock \-Gate \-Control \\\cline{1-4}
+6&\-I2\-C0&0x00&\-I2\-C0 \-Clock \-Gate \-Control \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40049004 \\\cline{1-2}
+\-Initial value&0x00000200 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40049008 \\\cline{1-2}
+\-Initial value&0x00000200 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-P\-R3  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-15}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-14  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-13}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-12  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E40\-C \\\cline{1-2}
+\-Initial value&0x00000080 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24 -\/ 31&\-P\-R\-I\-\_\-15&0x00&\-Priority of interrupt 15 \\\cline{1-4}
+16 -\/ 23&\-P\-R\-I\-\_\-14&0x00&\-Priority of interrupt 14 \\\cline{1-4}
+8 -\/ 15&\-P\-R\-I\-\_\-13&0x00&\-Priority of interrupt 12 \\\cline{1-4}
+0 -\/ 7&\-P\-R\-I\-\_\-12&0x80&\-Priority of interrupt 11 \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E100 \\\cline{1-2}
+\-Initial value&0x00001000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-S\-E\-T\-E\-N\-A&0x00&\-Interrupt set enable bits \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C1  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-O\-O\-P\-S}&\multirow{2}{\linewidth}{\-D\-O\-Z\-E\-E\-N }&\multirow{2}{\linewidth}{\-R\-S\-R\-C}&\multirow{2}{\linewidth}{\-M}&\multirow{2}{\linewidth}{\-W\-A\-K\-E }&\multirow{2}{\linewidth}{\-I\-L\-T}&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-T  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A002 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-O\-O\-P\-S&0x00&\-Loop \-Mode \-Select \\\cline{1-4}
+6&\-D\-O\-Z\-E\-E\-N&0x00&\-Doze \-Enable \\\cline{1-4}
+5&\-R\-S\-R\-C&0x00&\-Receiver \-Source \-Select \\\cline{1-4}
+4&\-M&0x00&9-\/\-Bit or 8-\/\-Bit \-Mode \-Select \\\cline{1-4}
+3&\-W\-A\-K\-E&0x00&\-Receiver \-Wakeup \-Method \-Select \\\cline{1-4}
+2&\-I\-L\-T&0x00&\-Idle \-Line \-Type \-Select \\\cline{1-4}
+1&\-P\-E&0x00&\-Parity \-Enable \\\cline{1-4}
+0&\-P\-T&0x00&\-Parity \-Type \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C3  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-R8\-T9}&\multirow{2}{\linewidth}{\-R9\-T8 }&\multirow{2}{\linewidth}{\-T\-X\-D\-I\-R}&\multirow{2}{\linewidth}{\-T\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-O\-R\-I\-E }&\multirow{2}{\linewidth}{\-N\-E\-I\-E}&\multirow{2}{\linewidth}{\-F\-E\-I\-E}&\multirow{2}{\linewidth}{\-P\-E\-I\-E  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A006 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-R8\-T9&0x00&\-Receive \-Bit 8 / \-Transmit \-Bit 9 \\\cline{1-4}
+6&\-R9\-T8&0x00&\-Receive \-Bit 9 / \-Transmit \-Bit 8 \\\cline{1-4}
+5&\-T\-X\-D\-I\-R&0x00&\-U\-A\-R\-T \-\_\-\-T\-X \-Pin \-Direction in \-Single-\/\-Wire \-Mode \\\cline{1-4}
+4&\-T\-X\-I\-N\-V&0x00&\-Transmit \-Data \-Inversion \\\cline{1-4}
+3&\-O\-R\-I\-E&0x00&\-Overrun \-Interrupt \-Enable \\\cline{1-4}
+2&\-N\-E\-I\-E&0x00&\-Noise \-Error \-Interrupt \-Enable \\\cline{1-4}
+1&\-F\-E\-I\-E&0x00&\-Framing \-Error \-Interrupt \-Enable \\\cline{1-4}
+0&\-P\-E\-I\-E&0x00&\-Parity \-Error \-Interrupt \-Enable \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C4  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-M\-A\-E\-N1}&\multirow{2}{\linewidth}{\-M\-A\-E\-N2 }&\multirow{2}{\linewidth}{\-M10}&\multirow{2}{\linewidth}{\-O\-S\-R  }\\\cline{2-5}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A00\-A \\\cline{1-2}
+\-Initial value&0x0000000\-F \\\cline{1-2}
+\-After-\/reset value&0x0000000\-F \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-M\-A\-E\-N1&0x00&\-Match \-Address \-Mode \-Enable 1 \\\cline{1-4}
+6&\-M\-A\-E\-N2&0x00&\-Match \-Address \-Mode \-Enable 2 \\\cline{1-4}
+5&\-M10&0x00&10-\/bit \-Mode select \\\cline{1-4}
+0 -\/ 4&\-O\-S\-R&0x00&\-Over \-Sampling \-Ratio \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-S2  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-I\-F}&\multirow{2}{\linewidth}{\-R\-X\-E\-D\-G\-I\-F }&\multirow{2}{\linewidth}{\-M\-S\-B\-F}&\multirow{2}{\linewidth}{\-R\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-R\-W\-U\-I\-D }&\multirow{2}{\linewidth}{\-B\-R\-K13}&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-E}&\multirow{1}{\linewidth}{\-R\-A\-F  }\\\cline{1-9}
+\-W &&\\\cline{1-3}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A005 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-B\-K\-D\-I\-F&0x00&\-L\-I\-N \-Break \-Detect \-Interrupt \-Flag \\\cline{1-4}
+6&\-R\-X\-E\-D\-G\-I\-F&0x00&\-U\-A\-R\-T \-\_\-\-R\-X \-Pin \-Active \-Edge \-Interrupt \-Flag \\\cline{1-4}
+5&\-M\-S\-B\-F&0x00&\-M\-S\-B \-First \\\cline{1-4}
+4&\-R\-X\-I\-N\-V&0x00&\-Receive \-Data \-Inversion \\\cline{1-4}
+3&\-R\-W\-U\-I\-D&0x00&\-Receive \-Wake \-Up \-Idle \-Detect \\\cline{1-4}
+2&\-B\-R\-K13&0x00&\-Break \-Character \-Generation \-Length \\\cline{1-4}
+1&\-L\-B\-K\-D\-E&0x00&\-L\-I\-N \-Break \-Detection \-Enable \\\cline{1-4}
+0&\-R\-A\-F&0x00&\-Receiver \-Active \-Flag \\\cline{1-4}
+\end{TabularC}
+\hypertarget{ASerialLdd2}{}\section{\-A\-Serial\-Ldd2 (\-Serial\-\_\-\-L\-D\-D)}\label{ASerialLdd2}
+\-This component \char`\"{}\-Serial\-\_\-\-L\-D\-D\char`\"{} implements an asynchronous serial communication. \-The component supports different settings of parity, word width, stop-\/bit and communication speed, user can select interrupt or polling handler. \-Communication speed can be changed also in runtime. \-The component requires one on-\/chip asynchronous serial communication channel.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_a_serial_ldd2_settings}{\-Component \-Settings}
+\item \hyperlink{_a_serial_ldd2_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_a_serial_ldd2_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___a_serial_ldd2__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{ASerialLdd2_settings}{}\subsection{\-Component \-Settings}\label{ASerialLdd2_settings}
+
+\begin{DoxyCode}
+          Component name                                 : ASerialLdd2
+          Device                                         : UART2
+          Interrupt service/event                        : Enabled
+            Interrupt RxD                                : INT_UART2
+            Interrupt RxD priority                       : high priority
+            Interrupt TxD                                : INT_UART2
+            Interrupt TxD priority                       : high priority
+            Interrupt Error                              : INT_UART2
+            Interrupt Error priority                     : high priority
+          Settings                                       : 
+            Data width                                   : 8 bits
+            Parity                                       : None
+            Stop bits                                    : 1
+            Loop mode                                    : Normal
+            Baud rate                                    : 19200 baud
+            Wakeup condition                             : Idle line wakeup
+            Stop in wait mode                            : no
+            Idle line mode                               : Starts after start 
+      bit
+            Transmitter output                           : Not inverted
+            Receiver input                               : Not inverted
+            Break generation length                      : 10/11 bits
+            Receiver                                     : Enabled
+              RxD                                        : ADC0_DM3/ADC0_SE7a/
+      PTE23/TPM2_CH1/UART2_RX
+              RxD pin signal                             : 
+            Transmitter                                  : Enabled
+              TxD                                        : ADC0_DP3/ADC0_SE3/
+      PTE22/TPM2_CH0/UART2_TX
+              TxD pin signal                             : 
+            Flow control                                 : None
+          Initialization                                 : 
+            Enabled in init. code                        : yes
+            Auto initialization                          : no
+            Event mask                                   : 
+              OnBlockSent                                : Enabled
+              OnBlockReceived                            : Enabled
+              OnTxComplete                               : Disabled
+              OnError                                    : Enabled
+              OnBreak                                    : Enabled
+          CPU clock/configuration selection              : 
+            Clock configuration 0                        : This component 
+      enabled
+            Clock configuration 1                        : This component 
+      disabled
+            Clock configuration 2                        : This component 
+      disabled
+            Clock configuration 3                        : This component 
+      disabled
+            Clock configuration 4                        : This component 
+      disabled
+            Clock configuration 5                        : This component 
+      disabled
+            Clock configuration 6                        : This component 
+      disabled
+            Clock configuration 7                        : This component 
+      disabled
+\end{DoxyCode}
+ \hypertarget{ASerialLdd2_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{ASerialLdd2_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-A\-Serial\-Ldd2 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x40048034&\-S\-I\-M\-\_\-\-S\-C\-G\-C4&0x00001400 &\-S\-I\-M\-\_\-\-S\-C\-G\-C4 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4004\-D05\-C&\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23&0x00000400 &\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4004\-D058&\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22&0x00000400 &\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x\-E000\-E40\-C&\-N\-V\-I\-C\-\_\-\-I\-P\-R3&0x00400080 &\-N\-V\-I\-C\-\_\-\-I\-P\-R3 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x\-E000\-E100&\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R&0x00005000 &\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C002&\-U\-A\-R\-T2\-\_\-\-C1&0x00000000 &\-U\-A\-R\-T2\-\_\-\-C1 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C006&\-U\-A\-R\-T2\-\_\-\-C3&0x00000000 &\-U\-A\-R\-T2\-\_\-\-C3 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C005&\-U\-A\-R\-T2\-\_\-\-S2&0x00000000 &\-U\-A\-R\-T2\-\_\-\-S2 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{ASerialLdd2_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{ASerialLdd2_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-S\-I\-M\-\_\-\-S\-C\-G\-C4  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-P\-I1 }&\multirow{2}{\linewidth}{\-S\-P\-I0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-C\-M\-P}&\multirow{2}{\linewidth}{\-U\-S\-B\-O\-T\-G}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-U\-A\-R\-T2}&\multirow{2}{\linewidth}{\-U\-A\-R\-T1}&\multirow{2}{\linewidth}{\-U\-A\-R\-T0 }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I2\-C1 }&\multirow{2}{\linewidth}{\-I2\-C0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40048034 \\\cline{1-2}
+\-Initial value&0x00001400 \\\cline{1-2}
+\-After-\/reset value&0x\-F0000030 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+23&\-S\-P\-I1&0x00&\-S\-P\-I1 \-Clock \-Gate \-Control \\\cline{1-4}
+22&\-S\-P\-I0&0x00&\-S\-P\-I0 \-Clock \-Gate \-Control \\\cline{1-4}
+19&\-C\-M\-P&0x00&\-Comparator \-Clock \-Gate \-Control \\\cline{1-4}
+18&\-U\-S\-B\-O\-T\-G&0x00&\-U\-S\-B \-Clock \-Gate \-Control \\\cline{1-4}
+12&\-U\-A\-R\-T2&0x01&\-U\-A\-R\-T2 \-Clock \-Gate \-Control \\\cline{1-4}
+11&\-U\-A\-R\-T1&0x00&\-U\-A\-R\-T1 \-Clock \-Gate \-Control \\\cline{1-4}
+10&\-U\-A\-R\-T0&0x01&\-U\-A\-R\-T0 \-Clock \-Gate \-Control \\\cline{1-4}
+7&\-I2\-C1&0x00&\-I2\-C1 \-Clock \-Gate \-Control \\\cline{1-4}
+6&\-I2\-C0&0x00&\-I2\-C0 \-Clock \-Gate \-Control \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-D05\-C \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x04&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-D058 \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x04&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-P\-R3  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-15}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-14  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-13}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-12  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E40\-C \\\cline{1-2}
+\-Initial value&0x00400080 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24 -\/ 31&\-P\-R\-I\-\_\-15&0x00&\-Priority of interrupt 15 \\\cline{1-4}
+16 -\/ 23&\-P\-R\-I\-\_\-14&0x00&\-Priority of interrupt 14 \\\cline{1-4}
+8 -\/ 15&\-P\-R\-I\-\_\-13&0x00&\-Priority of interrupt 12 \\\cline{1-4}
+0 -\/ 7&\-P\-R\-I\-\_\-12&0x80&\-Priority of interrupt 11 \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E100 \\\cline{1-2}
+\-Initial value&0x00005000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-S\-E\-T\-E\-N\-A&0x00&\-Interrupt set enable bits \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-C1  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-O\-O\-P\-S}&\multirow{2}{\linewidth}{\-U\-A\-R\-T\-S\-W\-A\-I }&\multirow{2}{\linewidth}{\-R\-S\-R\-C}&\multirow{2}{\linewidth}{\-M}&\multirow{2}{\linewidth}{\-W\-A\-K\-E }&\multirow{2}{\linewidth}{\-I\-L\-T}&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-T  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C002 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-O\-O\-P\-S&0x00&\-Loop \-Mode \-Select \\\cline{1-4}
+6&\-U\-A\-R\-T\-S\-W\-A\-I&0x00&\-U\-A\-R\-T \-Stops in \-Wait \-Mode \\\cline{1-4}
+5&\-R\-S\-R\-C&0x00&\-Receiver \-Source \-Select \\\cline{1-4}
+4&\-M&0x00&9-\/\-Bit or 8-\/\-Bit \-Mode \-Select \\\cline{1-4}
+3&\-W\-A\-K\-E&0x00&\-Receiver \-Wakeup \-Method \-Select \\\cline{1-4}
+2&\-I\-L\-T&0x00&\-Idle \-Line \-Type \-Select \\\cline{1-4}
+1&\-P\-E&0x00&\-Parity \-Enable \\\cline{1-4}
+0&\-P\-T&0x00&\-Parity \-Type \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-C3  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{1}{\linewidth}{\-R8}&\multirow{2}{\linewidth}{\-T8 }&\multirow{2}{\linewidth}{\-T\-X\-D\-I\-R}&\multirow{2}{\linewidth}{\-T\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-O\-R\-I\-E }&\multirow{2}{\linewidth}{\-N\-E\-I\-E}&\multirow{2}{\linewidth}{\-F\-E\-I\-E}&\multirow{2}{\linewidth}{\-P\-E\-I\-E  }\\\cline{2-9}
+\-W &\\\cline{1-2}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C006 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-R8&0x00&\-Ninth \-Data \-Bit for \-Receiver \\\cline{1-4}
+6&\-T8&0x00&\-Ninth \-Data \-Bit for \-Transmitter \\\cline{1-4}
+5&\-T\-X\-D\-I\-R&0x00&\-Tx\-D \-Pin \-Direction in \-Single-\/\-Wire \-Mode \\\cline{1-4}
+4&\-T\-X\-I\-N\-V&0x00&\-Transmit \-Data \-Inversion \\\cline{1-4}
+3&\-O\-R\-I\-E&0x00&\-Overrun \-Interrupt \-Enable \\\cline{1-4}
+2&\-N\-E\-I\-E&0x00&\-Noise \-Error \-Interrupt \-Enable \\\cline{1-4}
+1&\-F\-E\-I\-E&0x00&\-Framing \-Error \-Interrupt \-Enable \\\cline{1-4}
+0&\-P\-E\-I\-E&0x00&\-Parity \-Error \-Interrupt \-Enable \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-S2  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-I\-F}&\multirow{2}{\linewidth}{\-R\-X\-E\-D\-G\-I\-F }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-R\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-R\-W\-U\-I\-D }&\multirow{2}{\linewidth}{\-B\-R\-K13}&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-E}&\multirow{1}{\linewidth}{\-R\-A\-F  }\\\cline{1-9}
+\-W &&\\\cline{1-3}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C005 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-B\-K\-D\-I\-F&0x00&\-L\-I\-N \-Break \-Detect \-Interrupt \-Flag \\\cline{1-4}
+6&\-R\-X\-E\-D\-G\-I\-F&0x00&\-Rx\-D \-Pin \-Active \-Edge \-Interrupt \-Flag \\\cline{1-4}
+4&\-R\-X\-I\-N\-V&0x00&\-Receive \-Data \-Inversion \\\cline{1-4}
+3&\-R\-W\-U\-I\-D&0x00&\-Receive \-Wake \-Up \-Idle \-Detect \\\cline{1-4}
+2&\-B\-R\-K13&0x00&\-Break \-Character \-Generation \-Length \\\cline{1-4}
+1&\-L\-B\-K\-D\-E&0x00&\-L\-I\-N \-Break \-Detection \-Enable \\\cline{1-4}
+0&\-R\-A\-F&0x00&\-Receiver \-Active \-Flag \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd1}{}\section{\-Bit\-Io\-Ldd1 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd1}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd1_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd1_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd1_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd1__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd1_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd1_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd1
+          Pin for I/O                                    : TSI0_CH11/PTB18/
+      TPM2_CH0
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd1_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd1_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd1 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F054&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R&0x00040000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+0x400\-F\-F040&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+0x4004\-A048&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18 register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd1_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd1_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F054 \\\cline{1-2}
+\-Initial value&0x00040000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F040 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A048 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd2}{}\section{\-Bit\-Io\-Ldd2 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd2}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd2_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd2_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd2_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd2__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd2_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd2_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd2
+          Pin for I/O                                    : TSI0_CH12/PTB19/
+      TPM2_CH1
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd2_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd2_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd2 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F054&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R&0x000\-C0000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x400\-F\-F040&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x4004\-A048&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18 register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x4004\-A04\-C&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19 register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd2_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd2_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F054 \\\cline{1-2}
+\-Initial value&0x000\-C0000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F040 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A048 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A04\-C \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd3}{}\section{\-Bit\-Io\-Ldd3 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd3}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd3_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd3_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd3_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd3__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd3_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd3_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd3
+          Pin for I/O                                    : ADC0_SE5b/PTD1/
+      SPI0_SCK/TPM0_CH1
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd3_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd3_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd3 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F0\-D4&\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R&0x00000002 &\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+0x400\-F\-F0\-C0&\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+0x4004\-C004&\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1&0x00000100 &\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1 register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd3_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd3_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F0\-D4 \\\cline{1-2}
+\-Initial value&0x00000002 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F0\-C0 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-C004 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\hypertarget{ASerialLdd1}{}\section{\-A\-Serial\-Ldd1 (\-Serial\-\_\-\-L\-D\-D)}\label{ASerialLdd1}
+\-This component \char`\"{}\-Serial\-\_\-\-L\-D\-D\char`\"{} implements an asynchronous serial communication. \-The component supports different settings of parity, word width, stop-\/bit and communication speed, user can select interrupt or polling handler. \-Communication speed can be changed also in runtime. \-The component requires one on-\/chip asynchronous serial communication channel.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_a_serial_ldd1_settings}{\-Component \-Settings}
+\item \hyperlink{_a_serial_ldd1_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_a_serial_ldd1_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___a_serial_ldd1__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{ASerialLdd1_settings}{}\subsection{\-Component \-Settings}\label{ASerialLdd1_settings}
+
+\begin{DoxyCode}
+          Component name                                 : ASerialLdd1
+          Device                                         : UART0
+          Interrupt service/event                        : Enabled
+            Interrupt RxD                                : INT_UART0
+            Interrupt RxD priority                       : medium priority
+            Interrupt TxD                                : INT_UART0
+            Interrupt TxD priority                       : medium priority
+            Interrupt Error                              : INT_UART0
+            Interrupt Error priority                     : medium priority
+          Settings                                       : 
+            Data width                                   : 8 bits
+            Parity                                       : None
+            Stop bits                                    : 1
+            Loop mode                                    : Normal
+            Baud rate                                    : 19200 baud
+            Wakeup condition                             : Idle line wakeup
+            Stop in wait mode                            : no
+            Idle line mode                               : Starts after start 
+      bit
+            Transmitter output                           : Not inverted
+            Receiver input                               : Not inverted
+            Break generation length                      : 10/11 bits
+            Receiver                                     : Enabled
+              RxD                                        : TSI0_CH2/PTA1/
+      UART0_RX/TPM2_CH0
+              RxD pin signal                             : 
+            Transmitter                                  : Enabled
+              TxD                                        : TSI0_CH3/PTA2/
+      UART0_TX/TPM2_CH1
+              TxD pin signal                             : 
+            Flow control                                 : None
+          Initialization                                 : 
+            Enabled in init. code                        : yes
+            Auto initialization                          : no
+            Event mask                                   : 
+              OnBlockSent                                : Enabled
+              OnBlockReceived                            : Enabled
+              OnTxComplete                               : Disabled
+              OnError                                    : Enabled
+              OnBreak                                    : Enabled
+          CPU clock/configuration selection              : 
+            Clock configuration 0                        : This component 
+      enabled
+            Clock configuration 1                        : This component 
+      disabled
+            Clock configuration 2                        : This component 
+      disabled
+            Clock configuration 3                        : This component 
+      disabled
+            Clock configuration 4                        : This component 
+      disabled
+            Clock configuration 5                        : This component 
+      disabled
+            Clock configuration 6                        : This component 
+      disabled
+            Clock configuration 7                        : This component 
+      disabled
+\end{DoxyCode}
+ \hypertarget{ASerialLdd1_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{ASerialLdd1_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-A\-Serial\-Ldd1 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x40048034&\-S\-I\-M\-\_\-\-S\-C\-G\-C4&0x00000400 &\-S\-I\-M\-\_\-\-S\-C\-G\-C4 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x40049004&\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1&0x00000200 &\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x40049008&\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2&0x00000200 &\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x\-E000\-E40\-C&\-N\-V\-I\-C\-\_\-\-I\-P\-R3&0x00000080 &\-N\-V\-I\-C\-\_\-\-I\-P\-R3 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x\-E000\-E100&\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R&0x00001000 &\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A002&\-U\-A\-R\-T0\-\_\-\-C1&0x00000000 &\-U\-A\-R\-T0\-\_\-\-C1 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A006&\-U\-A\-R\-T0\-\_\-\-C3&0x00000000 &\-U\-A\-R\-T0\-\_\-\-C3 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A00\-A&\-U\-A\-R\-T0\-\_\-\-C4&0x0000000\-F &\-U\-A\-R\-T0\-\_\-\-C4 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+0x4006\-A005&\-U\-A\-R\-T0\-\_\-\-S2&0x00000000 &\-U\-A\-R\-T0\-\_\-\-S2 register, peripheral \-A\-Serial\-Ldd1. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{ASerialLdd1_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{ASerialLdd1_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-S\-I\-M\-\_\-\-S\-C\-G\-C4  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-P\-I1 }&\multirow{2}{\linewidth}{\-S\-P\-I0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-C\-M\-P}&\multirow{2}{\linewidth}{\-U\-S\-B\-O\-T\-G}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-U\-A\-R\-T2}&\multirow{2}{\linewidth}{\-U\-A\-R\-T1}&\multirow{2}{\linewidth}{\-U\-A\-R\-T0 }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I2\-C1 }&\multirow{2}{\linewidth}{\-I2\-C0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40048034 \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x\-F0000030 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+23&\-S\-P\-I1&0x00&\-S\-P\-I1 \-Clock \-Gate \-Control \\\cline{1-4}
+22&\-S\-P\-I0&0x00&\-S\-P\-I0 \-Clock \-Gate \-Control \\\cline{1-4}
+19&\-C\-M\-P&0x00&\-Comparator \-Clock \-Gate \-Control \\\cline{1-4}
+18&\-U\-S\-B\-O\-T\-G&0x00&\-U\-S\-B \-Clock \-Gate \-Control \\\cline{1-4}
+12&\-U\-A\-R\-T2&0x00&\-U\-A\-R\-T2 \-Clock \-Gate \-Control \\\cline{1-4}
+11&\-U\-A\-R\-T1&0x00&\-U\-A\-R\-T1 \-Clock \-Gate \-Control \\\cline{1-4}
+10&\-U\-A\-R\-T0&0x01&\-U\-A\-R\-T0 \-Clock \-Gate \-Control \\\cline{1-4}
+7&\-I2\-C1&0x00&\-I2\-C1 \-Clock \-Gate \-Control \\\cline{1-4}
+6&\-I2\-C0&0x00&\-I2\-C0 \-Clock \-Gate \-Control \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R1  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40049004 \\\cline{1-2}
+\-Initial value&0x00000200 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-A\-\_\-\-P\-C\-R2  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40049008 \\\cline{1-2}
+\-Initial value&0x00000200 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-P\-R3  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-15}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-14  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-13}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-12  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E40\-C \\\cline{1-2}
+\-Initial value&0x00000080 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24 -\/ 31&\-P\-R\-I\-\_\-15&0x00&\-Priority of interrupt 15 \\\cline{1-4}
+16 -\/ 23&\-P\-R\-I\-\_\-14&0x00&\-Priority of interrupt 14 \\\cline{1-4}
+8 -\/ 15&\-P\-R\-I\-\_\-13&0x00&\-Priority of interrupt 12 \\\cline{1-4}
+0 -\/ 7&\-P\-R\-I\-\_\-12&0x80&\-Priority of interrupt 11 \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E100 \\\cline{1-2}
+\-Initial value&0x00001000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-S\-E\-T\-E\-N\-A&0x00&\-Interrupt set enable bits \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C1  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-O\-O\-P\-S}&\multirow{2}{\linewidth}{\-D\-O\-Z\-E\-E\-N }&\multirow{2}{\linewidth}{\-R\-S\-R\-C}&\multirow{2}{\linewidth}{\-M}&\multirow{2}{\linewidth}{\-W\-A\-K\-E }&\multirow{2}{\linewidth}{\-I\-L\-T}&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-T  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A002 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-O\-O\-P\-S&0x00&\-Loop \-Mode \-Select \\\cline{1-4}
+6&\-D\-O\-Z\-E\-E\-N&0x00&\-Doze \-Enable \\\cline{1-4}
+5&\-R\-S\-R\-C&0x00&\-Receiver \-Source \-Select \\\cline{1-4}
+4&\-M&0x00&9-\/\-Bit or 8-\/\-Bit \-Mode \-Select \\\cline{1-4}
+3&\-W\-A\-K\-E&0x00&\-Receiver \-Wakeup \-Method \-Select \\\cline{1-4}
+2&\-I\-L\-T&0x00&\-Idle \-Line \-Type \-Select \\\cline{1-4}
+1&\-P\-E&0x00&\-Parity \-Enable \\\cline{1-4}
+0&\-P\-T&0x00&\-Parity \-Type \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C3  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-R8\-T9}&\multirow{2}{\linewidth}{\-R9\-T8 }&\multirow{2}{\linewidth}{\-T\-X\-D\-I\-R}&\multirow{2}{\linewidth}{\-T\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-O\-R\-I\-E }&\multirow{2}{\linewidth}{\-N\-E\-I\-E}&\multirow{2}{\linewidth}{\-F\-E\-I\-E}&\multirow{2}{\linewidth}{\-P\-E\-I\-E  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A006 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-R8\-T9&0x00&\-Receive \-Bit 8 / \-Transmit \-Bit 9 \\\cline{1-4}
+6&\-R9\-T8&0x00&\-Receive \-Bit 9 / \-Transmit \-Bit 8 \\\cline{1-4}
+5&\-T\-X\-D\-I\-R&0x00&\-U\-A\-R\-T \-\_\-\-T\-X \-Pin \-Direction in \-Single-\/\-Wire \-Mode \\\cline{1-4}
+4&\-T\-X\-I\-N\-V&0x00&\-Transmit \-Data \-Inversion \\\cline{1-4}
+3&\-O\-R\-I\-E&0x00&\-Overrun \-Interrupt \-Enable \\\cline{1-4}
+2&\-N\-E\-I\-E&0x00&\-Noise \-Error \-Interrupt \-Enable \\\cline{1-4}
+1&\-F\-E\-I\-E&0x00&\-Framing \-Error \-Interrupt \-Enable \\\cline{1-4}
+0&\-P\-E\-I\-E&0x00&\-Parity \-Error \-Interrupt \-Enable \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-C4  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-M\-A\-E\-N1}&\multirow{2}{\linewidth}{\-M\-A\-E\-N2 }&\multirow{2}{\linewidth}{\-M10}&\multirow{2}{\linewidth}{\-O\-S\-R  }\\\cline{2-5}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A00\-A \\\cline{1-2}
+\-Initial value&0x0000000\-F \\\cline{1-2}
+\-After-\/reset value&0x0000000\-F \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-M\-A\-E\-N1&0x00&\-Match \-Address \-Mode \-Enable 1 \\\cline{1-4}
+6&\-M\-A\-E\-N2&0x00&\-Match \-Address \-Mode \-Enable 2 \\\cline{1-4}
+5&\-M10&0x00&10-\/bit \-Mode select \\\cline{1-4}
+0 -\/ 4&\-O\-S\-R&0x00&\-Over \-Sampling \-Ratio \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T0\-\_\-\-S2  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-I\-F}&\multirow{2}{\linewidth}{\-R\-X\-E\-D\-G\-I\-F }&\multirow{2}{\linewidth}{\-M\-S\-B\-F}&\multirow{2}{\linewidth}{\-R\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-R\-W\-U\-I\-D }&\multirow{2}{\linewidth}{\-B\-R\-K13}&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-E}&\multirow{1}{\linewidth}{\-R\-A\-F  }\\\cline{1-9}
+\-W &&\\\cline{1-3}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-A005 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-B\-K\-D\-I\-F&0x00&\-L\-I\-N \-Break \-Detect \-Interrupt \-Flag \\\cline{1-4}
+6&\-R\-X\-E\-D\-G\-I\-F&0x00&\-U\-A\-R\-T \-\_\-\-R\-X \-Pin \-Active \-Edge \-Interrupt \-Flag \\\cline{1-4}
+5&\-M\-S\-B\-F&0x00&\-M\-S\-B \-First \\\cline{1-4}
+4&\-R\-X\-I\-N\-V&0x00&\-Receive \-Data \-Inversion \\\cline{1-4}
+3&\-R\-W\-U\-I\-D&0x00&\-Receive \-Wake \-Up \-Idle \-Detect \\\cline{1-4}
+2&\-B\-R\-K13&0x00&\-Break \-Character \-Generation \-Length \\\cline{1-4}
+1&\-L\-B\-K\-D\-E&0x00&\-L\-I\-N \-Break \-Detection \-Enable \\\cline{1-4}
+0&\-R\-A\-F&0x00&\-Receiver \-Active \-Flag \\\cline{1-4}
+\end{TabularC}
+\hypertarget{ASerialLdd2}{}\section{\-A\-Serial\-Ldd2 (\-Serial\-\_\-\-L\-D\-D)}\label{ASerialLdd2}
+\-This component \char`\"{}\-Serial\-\_\-\-L\-D\-D\char`\"{} implements an asynchronous serial communication. \-The component supports different settings of parity, word width, stop-\/bit and communication speed, user can select interrupt or polling handler. \-Communication speed can be changed also in runtime. \-The component requires one on-\/chip asynchronous serial communication channel.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_a_serial_ldd2_settings}{\-Component \-Settings}
+\item \hyperlink{_a_serial_ldd2_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_a_serial_ldd2_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___a_serial_ldd2__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{ASerialLdd2_settings}{}\subsection{\-Component \-Settings}\label{ASerialLdd2_settings}
+
+\begin{DoxyCode}
+          Component name                                 : ASerialLdd2
+          Device                                         : UART2
+          Interrupt service/event                        : Enabled
+            Interrupt RxD                                : INT_UART2
+            Interrupt RxD priority                       : high priority
+            Interrupt TxD                                : INT_UART2
+            Interrupt TxD priority                       : high priority
+            Interrupt Error                              : INT_UART2
+            Interrupt Error priority                     : high priority
+          Settings                                       : 
+            Data width                                   : 8 bits
+            Parity                                       : None
+            Stop bits                                    : 1
+            Loop mode                                    : Normal
+            Baud rate                                    : 19200 baud
+            Wakeup condition                             : Idle line wakeup
+            Stop in wait mode                            : no
+            Idle line mode                               : Starts after start 
+      bit
+            Transmitter output                           : Not inverted
+            Receiver input                               : Not inverted
+            Break generation length                      : 10/11 bits
+            Receiver                                     : Enabled
+              RxD                                        : ADC0_DM3/ADC0_SE7a/
+      PTE23/TPM2_CH1/UART2_RX
+              RxD pin signal                             : 
+            Transmitter                                  : Enabled
+              TxD                                        : ADC0_DP3/ADC0_SE3/
+      PTE22/TPM2_CH0/UART2_TX
+              TxD pin signal                             : 
+            Flow control                                 : None
+          Initialization                                 : 
+            Enabled in init. code                        : yes
+            Auto initialization                          : no
+            Event mask                                   : 
+              OnBlockSent                                : Enabled
+              OnBlockReceived                            : Enabled
+              OnTxComplete                               : Disabled
+              OnError                                    : Enabled
+              OnBreak                                    : Enabled
+          CPU clock/configuration selection              : 
+            Clock configuration 0                        : This component 
+      enabled
+            Clock configuration 1                        : This component 
+      disabled
+            Clock configuration 2                        : This component 
+      disabled
+            Clock configuration 3                        : This component 
+      disabled
+            Clock configuration 4                        : This component 
+      disabled
+            Clock configuration 5                        : This component 
+      disabled
+            Clock configuration 6                        : This component 
+      disabled
+            Clock configuration 7                        : This component 
+      disabled
+\end{DoxyCode}
+ \hypertarget{ASerialLdd2_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{ASerialLdd2_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-A\-Serial\-Ldd2 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x40048034&\-S\-I\-M\-\_\-\-S\-C\-G\-C4&0x00001400 &\-S\-I\-M\-\_\-\-S\-C\-G\-C4 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4004\-D05\-C&\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23&0x00000400 &\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4004\-D058&\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22&0x00000400 &\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x\-E000\-E40\-C&\-N\-V\-I\-C\-\_\-\-I\-P\-R3&0x00400080 &\-N\-V\-I\-C\-\_\-\-I\-P\-R3 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x\-E000\-E100&\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R&0x00005000 &\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C002&\-U\-A\-R\-T2\-\_\-\-C1&0x00000000 &\-U\-A\-R\-T2\-\_\-\-C1 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C006&\-U\-A\-R\-T2\-\_\-\-C3&0x00000000 &\-U\-A\-R\-T2\-\_\-\-C3 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+0x4006\-C005&\-U\-A\-R\-T2\-\_\-\-S2&0x00000000 &\-U\-A\-R\-T2\-\_\-\-S2 register, peripheral \-A\-Serial\-Ldd2. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{ASerialLdd2_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{ASerialLdd2_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-S\-I\-M\-\_\-\-S\-C\-G\-C4  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-P\-I1 }&\multirow{2}{\linewidth}{\-S\-P\-I0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-C\-M\-P}&\multirow{2}{\linewidth}{\-U\-S\-B\-O\-T\-G}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-U\-A\-R\-T2}&\multirow{2}{\linewidth}{\-U\-A\-R\-T1}&\multirow{2}{\linewidth}{\-U\-A\-R\-T0 }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I2\-C1 }&\multirow{2}{\linewidth}{\-I2\-C0}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/  }\\\cline{2-17}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x40048034 \\\cline{1-2}
+\-Initial value&0x00001400 \\\cline{1-2}
+\-After-\/reset value&0x\-F0000030 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+23&\-S\-P\-I1&0x00&\-S\-P\-I1 \-Clock \-Gate \-Control \\\cline{1-4}
+22&\-S\-P\-I0&0x00&\-S\-P\-I0 \-Clock \-Gate \-Control \\\cline{1-4}
+19&\-C\-M\-P&0x00&\-Comparator \-Clock \-Gate \-Control \\\cline{1-4}
+18&\-U\-S\-B\-O\-T\-G&0x00&\-U\-S\-B \-Clock \-Gate \-Control \\\cline{1-4}
+12&\-U\-A\-R\-T2&0x01&\-U\-A\-R\-T2 \-Clock \-Gate \-Control \\\cline{1-4}
+11&\-U\-A\-R\-T1&0x00&\-U\-A\-R\-T1 \-Clock \-Gate \-Control \\\cline{1-4}
+10&\-U\-A\-R\-T0&0x01&\-U\-A\-R\-T0 \-Clock \-Gate \-Control \\\cline{1-4}
+7&\-I2\-C1&0x00&\-I2\-C1 \-Clock \-Gate \-Control \\\cline{1-4}
+6&\-I2\-C0&0x00&\-I2\-C0 \-Clock \-Gate \-Control \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R23  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-D05\-C \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x04&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-E\-\_\-\-P\-C\-R22  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-D058 \\\cline{1-2}
+\-Initial value&0x00000400 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x04&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-P\-R3  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-15}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-14  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-13}&\multirow{2}{\linewidth}{\-P\-R\-I\-\_\-12  }\\\cline{2-3}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E40\-C \\\cline{1-2}
+\-Initial value&0x00400080 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24 -\/ 31&\-P\-R\-I\-\_\-15&0x00&\-Priority of interrupt 15 \\\cline{1-4}
+16 -\/ 23&\-P\-R\-I\-\_\-14&0x00&\-Priority of interrupt 14 \\\cline{1-4}
+8 -\/ 15&\-P\-R\-I\-\_\-13&0x00&\-Priority of interrupt 12 \\\cline{1-4}
+0 -\/ 7&\-P\-R\-I\-\_\-12&0x80&\-Priority of interrupt 11 \\\cline{1-4}
+\end{TabularC}
+\-N\-V\-I\-C\-\_\-\-I\-S\-E\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-S\-E\-T\-E\-N\-A  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x\-E000\-E100 \\\cline{1-2}
+\-Initial value&0x00005000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-S\-E\-T\-E\-N\-A&0x00&\-Interrupt set enable bits \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-C1  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-O\-O\-P\-S}&\multirow{2}{\linewidth}{\-U\-A\-R\-T\-S\-W\-A\-I }&\multirow{2}{\linewidth}{\-R\-S\-R\-C}&\multirow{2}{\linewidth}{\-M}&\multirow{2}{\linewidth}{\-W\-A\-K\-E }&\multirow{2}{\linewidth}{\-I\-L\-T}&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-T  }\\\cline{2-9}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C002 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-O\-O\-P\-S&0x00&\-Loop \-Mode \-Select \\\cline{1-4}
+6&\-U\-A\-R\-T\-S\-W\-A\-I&0x00&\-U\-A\-R\-T \-Stops in \-Wait \-Mode \\\cline{1-4}
+5&\-R\-S\-R\-C&0x00&\-Receiver \-Source \-Select \\\cline{1-4}
+4&\-M&0x00&9-\/\-Bit or 8-\/\-Bit \-Mode \-Select \\\cline{1-4}
+3&\-W\-A\-K\-E&0x00&\-Receiver \-Wakeup \-Method \-Select \\\cline{1-4}
+2&\-I\-L\-T&0x00&\-Idle \-Line \-Type \-Select \\\cline{1-4}
+1&\-P\-E&0x00&\-Parity \-Enable \\\cline{1-4}
+0&\-P\-T&0x00&\-Parity \-Type \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-C3  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{1}{\linewidth}{\-R8}&\multirow{2}{\linewidth}{\-T8 }&\multirow{2}{\linewidth}{\-T\-X\-D\-I\-R}&\multirow{2}{\linewidth}{\-T\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-O\-R\-I\-E }&\multirow{2}{\linewidth}{\-N\-E\-I\-E}&\multirow{2}{\linewidth}{\-F\-E\-I\-E}&\multirow{2}{\linewidth}{\-P\-E\-I\-E  }\\\cline{2-9}
+\-W &\\\cline{1-2}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C006 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-R8&0x00&\-Ninth \-Data \-Bit for \-Receiver \\\cline{1-4}
+6&\-T8&0x00&\-Ninth \-Data \-Bit for \-Transmitter \\\cline{1-4}
+5&\-T\-X\-D\-I\-R&0x00&\-Tx\-D \-Pin \-Direction in \-Single-\/\-Wire \-Mode \\\cline{1-4}
+4&\-T\-X\-I\-N\-V&0x00&\-Transmit \-Data \-Inversion \\\cline{1-4}
+3&\-O\-R\-I\-E&0x00&\-Overrun \-Interrupt \-Enable \\\cline{1-4}
+2&\-N\-E\-I\-E&0x00&\-Noise \-Error \-Interrupt \-Enable \\\cline{1-4}
+1&\-F\-E\-I\-E&0x00&\-Framing \-Error \-Interrupt \-Enable \\\cline{1-4}
+0&\-P\-E\-I\-E&0x00&\-Parity \-Error \-Interrupt \-Enable \\\cline{1-4}
+\end{TabularC}
+\-U\-A\-R\-T2\-\_\-\-S2  \begin{TabularC}{9}
+\hline
+\-Bit&7&6&5&4&3&2&1&0  \\\cline{1-9}
+\-R&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-I\-F}&\multirow{2}{\linewidth}{\-R\-X\-E\-D\-G\-I\-F }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-R\-X\-I\-N\-V}&\multirow{2}{\linewidth}{\-R\-W\-U\-I\-D }&\multirow{2}{\linewidth}{\-B\-R\-K13}&\multirow{2}{\linewidth}{\-L\-B\-K\-D\-E}&\multirow{1}{\linewidth}{\-R\-A\-F  }\\\cline{1-9}
+\-W &&\\\cline{1-3}
+\-Reset&0&0&0&0&0&0&0&0  \\\cline{1-9}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4006\-C005 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+7&\-L\-B\-K\-D\-I\-F&0x00&\-L\-I\-N \-Break \-Detect \-Interrupt \-Flag \\\cline{1-4}
+6&\-R\-X\-E\-D\-G\-I\-F&0x00&\-Rx\-D \-Pin \-Active \-Edge \-Interrupt \-Flag \\\cline{1-4}
+4&\-R\-X\-I\-N\-V&0x00&\-Receive \-Data \-Inversion \\\cline{1-4}
+3&\-R\-W\-U\-I\-D&0x00&\-Receive \-Wake \-Up \-Idle \-Detect \\\cline{1-4}
+2&\-B\-R\-K13&0x00&\-Break \-Character \-Generation \-Length \\\cline{1-4}
+1&\-L\-B\-K\-D\-E&0x00&\-L\-I\-N \-Break \-Detection \-Enable \\\cline{1-4}
+0&\-R\-A\-F&0x00&\-Receiver \-Active \-Flag \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd1}{}\section{\-Bit\-Io\-Ldd1 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd1}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd1_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd1_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd1_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd1__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd1_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd1_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd1
+          Pin for I/O                                    : TSI0_CH11/PTB18/
+      TPM2_CH0
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd1_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd1_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd1 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F054&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R&0x00040000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+0x400\-F\-F040&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+0x4004\-A048&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18 register, peripheral \-Bit\-Io\-Ldd1. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd1_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd1_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F054 \\\cline{1-2}
+\-Initial value&0x00040000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F040 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A048 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd2}{}\section{\-Bit\-Io\-Ldd2 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd2}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd2_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd2_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd2_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd2__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd2_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd2_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd2
+          Pin for I/O                                    : TSI0_CH12/PTB19/
+      TPM2_CH1
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd2_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd2_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd2 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F054&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R&0x000\-C0000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x400\-F\-F040&\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x4004\-A048&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18 register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+0x4004\-A04\-C&\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19&0x00000100 &\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19 register, peripheral \-Bit\-Io\-Ldd2. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd2_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd2_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F054 \\\cline{1-2}
+\-Initial value&0x000\-C0000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-B\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F040 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R18  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A048 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-B\-\_\-\-P\-C\-R19  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-A04\-C \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
+\hypertarget{BitIoLdd3}{}\section{\-Bit\-Io\-Ldd3 (\-Bit\-I\-O\-\_\-\-L\-D\-D)}\label{BitIoLdd3}
+\-The \-H\-A\-L \-Bit\-I\-O component provides a low level \-A\-P\-I for unified access to general purpose digital input/output pins across various device designs.
+
+\-R\-T\-O\-S drivers using \-H\-A\-L \-Bit\-I\-O \-A\-P\-I are simpler and more portable to various microprocessors.
+
+
+\begin{DoxyItemize}
+\item \hyperlink{_bit_io_ldd3_settings}{\-Component \-Settings}
+\item \hyperlink{_bit_io_ldd3_regs_overview}{\-Registers \-Initialization \-Overview}
+\item \hyperlink{_bit_io_ldd3_regs_details}{\-Register \-Initialization \-Details}
+\item \hyperlink{group___bit_io_ldd3__module}{\-Component documentation} 
+\end{DoxyItemize}\hypertarget{BitIoLdd3_settings}{}\subsection{\-Component \-Settings}\label{BitIoLdd3_settings}
+
+\begin{DoxyCode}
+          Component name                                 : BitIoLdd3
+          Pin for I/O                                    : ADC0_SE5b/PTD1/
+      SPI0_SCK/TPM0_CH1
+          Pin signal                                     : 
+          Direction                                      : Output
+          Initialization                                 : 
+            Init. direction                              : Output
+            Init. value                                  : 0
+            Auto initialization                          : yes
+          Safe mode                                      : yes
+\end{DoxyCode}
+ \hypertarget{BitIoLdd3_regs_overview}{}\subsection{\-Registers \-Initialization \-Overview}\label{BitIoLdd3_regs_overview}
+\-This page initialization values for the registers of the peripheral(s) configured by the component. \begin{TabularC}{4}
+\hline
+\-Bit\-Io\-Ldd3 \-Initialization \\\cline{1-1}
+\-Address&\-Register&\-Register \-Value&\-Register \-Description \\\cline{1-4}
+0x400\-F\-F0\-D4&\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R&0x00000002 &\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+0x400\-F\-F0\-C0&\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R&0x00000000 &\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+0x4004\-C004&\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1&0x00000100 &\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1 register, peripheral \-Bit\-Io\-Ldd3. \\\cline{1-4}
+\end{TabularC}
+\par
+ \hypertarget{BitIoLdd3_regs_details}{}\subsection{\-Register \-Initialization \-Details}\label{BitIoLdd3_regs_details}
+\-This page contains detailed description of initialization values for the registers of the peripheral(s) configured by the component.
+
+\-G\-P\-I\-O\-D\-\_\-\-P\-D\-D\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-D  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F0\-D4 \\\cline{1-2}
+\-Initial value&0x00000002 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-D&0x00&\-Port \-Data \-Direction \\\cline{1-4}
+\end{TabularC}
+\-G\-P\-I\-O\-D\-\_\-\-P\-D\-O\-R  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{\-P\-D\-O  }\\\cline{2-2}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x400\-F\-F0\-C0 \\\cline{1-2}
+\-Initial value&0x00000000 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+0 -\/ 31&\-P\-D\-O&0x00&\-Port \-Data \-Output \\\cline{1-4}
+\end{TabularC}
+\-P\-O\-R\-T\-D\-\_\-\-P\-C\-R1  \begin{TabularC}{17}
+\hline
+\-Bit&31&30&29&28&27&26&25&24&23 &22&21&20&19&18&17&16  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-I\-S\-F}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-I\-R\-Q\-C  }\\\cline{2-14}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+\begin{TabularC}{17}
+\hline
+\-Bit&15&14&13&12&11&10&9&8&7 &6&5&4&3&2&1&0  \\\cline{1-17}
+\-R&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-M\-U\-X }&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-D\-S\-E}&\multirow{2}{\linewidth}{-\/ }&\multirow{2}{\linewidth}{\-P\-F\-E}&\multirow{2}{\linewidth}{-\/}&\multirow{2}{\linewidth}{\-S\-R\-E }&\multirow{2}{\linewidth}{\-P\-E}&\multirow{2}{\linewidth}{\-P\-S  }\\\cline{2-15}
+\-W  \\\cline{1-1}
+\-Reset&0&0&0&0&0&0&0&0&0&0 &0&0&0&0&0&0  \\\cline{1-17}
+\end{TabularC}
+
+
+ \begin{TabularC}{4}
+\hline
+\-Address&0x4004\-C004 \\\cline{1-2}
+\-Initial value&0x00000100 \\\cline{1-2}
+\-After-\/reset value&0x00000000 \\\cline{1-2}
+\-Bit&\-Field&\-Value&\-Description \\\cline{1-4}
+24&\-I\-S\-F&0x00&\-Interrupt \-Status \-Flag \\\cline{1-4}
+16 -\/ 19&\-I\-R\-Q\-C&0x00&\-Interrupt \-Configuration \\\cline{1-4}
+8 -\/ 10&\-M\-U\-X&0x00&\-Pin \-Mux \-Control \\\cline{1-4}
+6&\-D\-S\-E&0x00&\-Drive \-Strength \-Enable \\\cline{1-4}
+4&\-P\-F\-E&0x00&\-Passive \-Filter \-Enable \\\cline{1-4}
+2&\-S\-R\-E&0x00&\-Slew \-Rate \-Enable \\\cline{1-4}
+1&\-P\-E&0x00&\-Pull \-Enable \\\cline{1-4}
+0&\-P\-S&0x00&\-Pull \-Select \\\cline{1-4}
+\end{TabularC}
